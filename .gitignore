@@ -47,3 +47,4 @@ phoenix8-handover.zip
 # local secrets
 .dev.vars
 !.env.example
+.wrangler/
