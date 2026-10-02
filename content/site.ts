@@ -13,13 +13,13 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/#work" },
+  { label: "Process", href: "/#process" },
+  { label: "About", href: "/#about" },
 ] as const;
 
-export const headerCta = { label: "Book a call", href: "#contact" };
+export const headerCta = { label: "Book a call", href: "/#contact" };
 
 export const hero = {
   eyebrow: "Software · AI · Data systems",
@@ -152,11 +152,22 @@ export const cta = {
   button: { label: "Book a discovery call", href: "mailto:hello@phoenix8labs.com" },
 };
 
+export const form = {
+  needs: ["ERP & CRM", "AI lead generation", "POS & retail", "Website", "Mobile app", "Not sure yet"],
+  submit: "Book a discovery call",
+  sending: "Sending…",
+  success: {
+    title: "Thanks, we've got your message.",
+    body: "We'll reply within one working day to arrange your 30-minute call.",
+  },
+  error: "Something went wrong sending your message. Please try again, or email us directly at",
+};
+
 export const footer = {
   links: [
-    { label: "Services", href: "#services" },
-    { label: "Work", href: "#work" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/#services" },
+    { label: "Work", href: "/#work" },
+    { label: "Contact", href: "/contact/" },
     { label: "Privacy", href: "/privacy/" },
     { label: "LinkedIn", href: "#" },
   ],

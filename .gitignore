@@ -43,3 +43,7 @@ next-env.d.ts
 # handover package
 phoenix8-handover/
 phoenix8-handover.zip
+
+# local secrets
+.dev.vars
+!.env.example
