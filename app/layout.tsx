@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
+import { Header } from "@/components/sections/Header";
+import { Footer } from "@/components/sections/Footer";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -34,21 +36,9 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <header className="sticky top-0 z-50 flex h-[68px] items-center border-b border-line bg-surface lg:h-[88px]">
-          <div className="mx-auto w-full max-w-[1280px] px-5 lg:px-20">
-            <a href="#top" aria-label="Phoenix 8 Labs home" className="inline-block">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/brand/phoenix8-lockup-dark.svg"
-                alt="Phoenix 8 Labs"
-                width={953}
-                height={240}
-                className="h-[34px] w-auto lg:h-[44px]"
-              />
-            </a>
-          </div>
-        </header>
+        <Header />
         <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

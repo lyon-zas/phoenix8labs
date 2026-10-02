@@ -1,10 +1,21 @@
+import { Hero } from "@/components/sections/Hero";
+import { TrustStrip } from "@/components/sections/TrustStrip";
+import { Services } from "@/components/sections/Services";
+import { Work } from "@/components/sections/Work";
+import { Process } from "@/components/sections/Process";
+import { About } from "@/components/sections/About";
+import { ContactCta } from "@/components/sections/ContactCta";
+
 export default function Home() {
   return (
-    <div id="top" className="mx-auto max-w-[1280px] px-5 py-14 lg:px-20 lg:py-28">
-      <h1 className="font-display text-[38px] font-bold leading-[1.04] tracking-[-0.01em] lg:text-[64px]">
-        We build the systems businesses run on.
-      </h1>
-      <p className="mt-6 max-w-xl text-ink-muted">Phase 1 setup check.</p>
-    </div>
+    <>
+      <Hero />
+      <TrustStrip />
+      <Services />
+      <Work />
+      <Process />
+      <About />
+      <ContactCta />
+    </>
   );
 }
