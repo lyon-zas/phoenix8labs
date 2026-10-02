@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Brand tokens (dark theme, site-wide). Source: HANDOVER.md / public/brand/tokens.json */
+:root {
+  --surface: #141416;
+  --surface-raised: #1e1f22;
+  --ink: #f5efe6;
+  --ink-muted: #a89d90;
+  --line: #2c2d31;
+  --copper: #c85a1e;
+  --copper-deep: #8e3512;
+  --amber: #ee9a36;
+  --copper-strong: #a8480f;
+  --graphite: #6c6f75;
+  --copper-soft: #3a2014;
+
+  --header-h: 68px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 88px;
+  }
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-copper: var(--copper);
+  --color-copper-deep: var(--copper-deep);
+  --color-amber: var(--amber);
+  --color-copper-strong: var(--copper-strong);
+  --color-graphite: var(--graphite);
+  --color-copper-soft: var(--copper-soft);
+
+  --font-display: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  background: var(--surface);
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 24px;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
