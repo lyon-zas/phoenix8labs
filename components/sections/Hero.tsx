@@ -29,6 +29,7 @@ export function Hero() {
             alt=""
             width={941}
             height={718}
+            fetchPriority="high"
             className="h-auto w-[260px] lg:w-[560px]"
           />
         </div>
