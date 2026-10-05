@@ -6,7 +6,7 @@ type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 const base =
-  "inline-flex items-center whitespace-nowrap justify-center rounded-md font-semibold no-underline transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
+  "inline-flex items-center whitespace-nowrap justify-center rounded-md font-semibold no-underline transition duration-200 hover:-translate-y-px active:translate-y-0 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 
 const variants = {
   primary: "bg-copper-strong text-white hover:bg-[#b9500f]",

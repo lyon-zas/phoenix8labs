@@ -65,14 +65,114 @@ body {
   }
 }
 
+/* ---------- Motion ---------- */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes mark-in {
+  from { transform: scale(0.94) translateY(12px); }
+  to { transform: none; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes glow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.08); }
+}
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes sheen {
+  from { background-position: 150% 0; }
+  to { background-position: -50% 0; }
+}
+@keyframes grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Page-load entrance (works without JS); stagger with style="--d: 120ms" */
+.anim-rise {
+  animation: rise 0.7s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+.anim-mark {
+  animation:
+    mark-in 0.9s var(--ease-out) both,
+    float 7s ease-in-out 0.9s infinite;
+}
+.anim-glow { animation: glow 6s ease-in-out infinite; }
+.anim-menu { animation: menu-in 0.25s var(--ease-out) both; }
+.anim-sheen {
+  background-image: linear-gradient(110deg, transparent 35%, rgba(238, 154, 54, 0.09) 50%, transparent 65%);
+  background-size: 250% 100%;
+  animation: sheen 9s linear infinite;
+}
+
+/* Scroll reveal (see components/ui/Reveal.tsx) */
+.reveal {
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+.reveal[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translate(var(--x, 0), var(--y, 20px));
+}
+
+/* Process step line draws left to right when its step reveals */
+.step-line {
+  transform-origin: left;
+  transition: transform 0.9s var(--ease-out);
+  transition-delay: calc(var(--d, 0ms) + 150ms);
+}
+[data-reveal="hidden"] .step-line { transform: scaleX(0); }
+
+/* Nav underline */
+.link-underline { position: relative; }
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 2px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.link-underline:hover::after { transform: scaleX(1); }
+
+/* Scroll progress bar: pure CSS, only in browsers with scroll-driven animations */
+.scroll-progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    position: fixed; inset: 0 0 auto 0; z-index: 60;
+    height: 3px;
+    background: var(--amber);
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: grow linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  html { scroll-behavior: auto; }
+  .anim-rise, .anim-mark, .anim-glow, .anim-menu, .anim-sheen, .scroll-progress {
+    animation: none !important;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+  .reveal, .step-line, .link-underline::after { transition: none !important; }
+  .reveal[data-reveal="hidden"] { opacity: 1; transform: none; }
+  [data-reveal="hidden"] .step-line { transform: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
 }

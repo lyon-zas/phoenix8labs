@@ -14,27 +14,34 @@ export function Process() {
           </h2>
         </Reveal>
 
-        <Reveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {process.steps.map((s) => (
-            <div key={s.n} className="flex flex-col gap-3 border-t-2 border-copper pt-6">
-              <p className="font-display text-[15px] font-bold text-amber">{s.n}</p>
-              <h3 className="font-display text-xl font-semibold lg:text-[22px]">{s.title}</h3>
-              <p className="text-ink-muted">{s.body}</p>
-            </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {process.steps.map((s, i) => (
+            <Reveal key={s.n} delay={i * 130}>
+              <div className="relative flex h-full flex-col gap-3 pt-6">
+                <span
+                  aria-hidden="true"
+                  className="step-line absolute inset-x-0 top-0 h-[2px] bg-copper"
+                  style={{ "--d": `${i * 130}ms` } as React.CSSProperties}
+                />
+                <p className="font-display text-[15px] font-bold text-amber">{s.n}</p>
+                <h3 className="font-display text-xl font-semibold lg:text-[22px]">{s.title}</h3>
+                <p className="text-ink-muted">{s.body}</p>
+              </div>
+            </Reveal>
           ))}
-        </Reveal>
+        </div>
 
-        <Reveal>
-          <p className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 text-sm text-ink-muted">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 text-sm text-ink-muted">
+          <Reveal>
             <strong className="font-semibold text-ink">{process.stackLabel}</strong>
-            {process.stack.map((t, i) => (
-              <span key={t} className="flex items-center gap-6">
-                {i > 0 && <span aria-hidden="true">·</span>}
-                {t}
-              </span>
-            ))}
-          </p>
-        </Reveal>
+          </Reveal>
+          {process.stack.map((t, i) => (
+            <Reveal key={t} delay={(i + 1) * 60} className="flex items-center gap-6">
+              {i > 0 && <span aria-hidden="true">·</span>}
+              <span>{t}</span>
+            </Reveal>
+          ))}
+        </div>
       </Container>
     </section>
   );

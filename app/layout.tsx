@@ -74,6 +74,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <div className="scroll-progress" aria-hidden="true" />
         <Header />
         <main id="main">{children}</main>
         <Footer />
