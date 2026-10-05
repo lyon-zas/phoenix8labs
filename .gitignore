@@ -48,3 +48,4 @@ phoenix8-handover.zip
 .dev.vars
 !.env.example
 .wrangler/
+!.env.production
