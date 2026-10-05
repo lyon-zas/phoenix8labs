@@ -1,10 +1,10 @@
-// Cloudflare Pages Function: POST /api/contact
+// Contact endpoint: POST /api/contact (called from worker/index.ts)
 // Verifies the Turnstile token, then emails the enquiry through Resend.
-// Secrets (set in Cloudflare Pages > Settings > Environment variables, never in the repo):
+// Secrets (set in Cloudflare > Workers > phoenix8labs > Settings > Variables and Secrets, never in the repo):
 //   TURNSTILE_SECRET, RESEND_API_KEY
 // Optional: CONTACT_TO (default hello@phoenix8labs.com), CONTACT_FROM
 
-interface Env {
+export interface Env {
   TURNSTILE_SECRET: string;
   RESEND_API_KEY: string;
   CONTACT_TO?: string;
@@ -25,7 +25,8 @@ const esc = (s: string) =>
 
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 
-export const onRequestPost = async ({ request, env }: { request: Request; env: Env }) => {
+export const handleContact = async (request: Request, env: Env): Promise<Response> => {
+  if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
   let raw: Record<string, unknown>;
   try {
     raw = await request.json();
@@ -85,4 +86,3 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
   return json({ ok: true });
 };
 
-export const onRequest = () => json({ error: "Method not allowed" }, 405);
