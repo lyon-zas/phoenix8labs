@@ -7,7 +7,7 @@ import { form, site } from "@/content/site";
 type Status = "idle" | "sending" | "success" | "error";
 
 const field =
-  "w-full rounded-sm border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-muted/60 focus-visible:border-amber focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-amber";
+  "w-full rounded-sm border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-muted/60 transition duration-200 focus-visible:border-amber focus-visible:shadow-[0_0_0_4px_rgba(238,154,54,0.18)] focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-amber";
 const label = "mb-2 block text-sm font-medium text-ink";
 
 export function ContactForm() {
@@ -120,7 +120,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending" || (turnstileEnabled && !token)}
-        className="mt-6 inline-flex h-[52px] w-full items-center justify-center whitespace-nowrap rounded-md bg-copper-strong px-7 text-base font-semibold text-white transition-colors hover:bg-[#b9500f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
+        className="mt-6 inline-flex h-[52px] w-full items-center justify-center whitespace-nowrap rounded-md bg-copper-strong px-7 text-base font-semibold text-white transition duration-200 hover:-translate-y-px hover:bg-[#b9500f] active:translate-y-0 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
       >
         {status === "sending" ? form.sending : form.submit}
       </button>

@@ -7,7 +7,7 @@ export function ContactCta() {
   return (
     <section id="contact" className="py-14 lg:py-28">
       <Container>
-        <Reveal className="grid gap-10 rounded-lg bg-copper-soft p-6 md:p-10 lg:grid-cols-[5fr_6fr] lg:items-start lg:gap-14 lg:p-[72px]">
+        <Reveal className="anim-sheen grid gap-10 rounded-lg bg-copper-soft p-6 md:p-10 lg:grid-cols-[5fr_6fr] lg:items-start lg:gap-14 lg:p-[72px]">
           <div className="flex flex-col gap-4">
             <h2 className="font-display text-[30px] font-bold leading-[1.15] lg:text-[44px] lg:leading-[1.1]">
               {cta.headline}

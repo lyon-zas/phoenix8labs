@@ -11,5 +11,5 @@ const icons = {
 
 export function Icon({ name }: { name: IconName }) {
   const Cmp = icons[name];
-  return <Cmp size={36} strokeWidth={1.6} className="text-amber" aria-hidden="true" />;
+  return <Cmp size={36} strokeWidth={1.6} className="text-amber transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110" aria-hidden="true" />;
 }

@@ -10,6 +10,14 @@ const FOCUSABLE = "a[href], button:not([disabled])";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -58,7 +66,11 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 h-[68px] border-b border-line bg-surface lg:h-[88px]"
+      className={`sticky top-0 z-50 h-[68px] border-b bg-surface transition-[border-color,box-shadow] duration-300 lg:h-[88px] ${
+        scrolled
+          ? "border-graphite/40 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.7)]"
+          : "border-line"
+      }`}
     >
       <Container className="flex h-full items-center justify-between">
         <a href="#top" className="inline-block">
@@ -74,7 +86,7 @@ export function Header() {
 
         <nav aria-label="Main" className="hidden items-center gap-10 text-[15px] font-medium lg:flex">
           {nav.map((l) => (
-            <a key={l.href} href={l.href} className="text-ink no-underline hover:text-amber">
+            <a key={l.href} href={l.href} className="link-underline text-ink no-underline transition-colors hover:text-amber">
               {l.label}
             </a>
           ))}
@@ -100,15 +112,16 @@ export function Header() {
         <div
           id="mobile-menu"
           data-menu
-          className="fixed inset-x-0 bottom-0 top-[68px] overflow-y-auto bg-surface px-5 py-8 lg:hidden"
+          className="anim-menu fixed inset-x-0 bottom-0 top-[68px] overflow-y-auto bg-surface px-5 py-8 lg:hidden"
         >
           <nav aria-label="Mobile" className="flex flex-col">
-            {nav.map((l) => (
+            {nav.map((l, i) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-5 font-display text-2xl font-semibold text-ink no-underline"
+                style={{ "--d": `${60 + i * 60}ms` } as React.CSSProperties}
+                className="anim-rise border-b border-line py-5 font-display text-2xl font-semibold text-ink no-underline"
               >
                 {l.label}
               </a>
