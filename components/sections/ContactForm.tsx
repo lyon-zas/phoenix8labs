@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Turnstile } from "@/components/ui/Turnstile";
+import { Turnstile, turnstileEnabled } from "@/components/ui/Turnstile";
 import { form, site } from "@/content/site";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -119,7 +119,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "sending" || !token}
+        disabled={status === "sending" || (turnstileEnabled && !token)}
         className="mt-6 inline-flex h-[52px] w-full items-center justify-center whitespace-nowrap rounded-md bg-copper-strong px-7 text-base font-semibold text-white transition-colors hover:bg-[#b9500f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
       >
         {status === "sending" ? form.sending : form.submit}

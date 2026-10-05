@@ -19,6 +19,8 @@ const siteKey =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
   (process.env.NODE_ENV !== "production" ? DEV_SITE_KEY : "");
 
+export const turnstileEnabled = Boolean(siteKey);
+
 export function Turnstile({
   onToken,
   resetSignal,
